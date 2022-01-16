@@ -6,28 +6,28 @@ import org.jsoup.nodes.Element;
 
 public class testJsoup {
     public static void main(String[] args) {
-        final String url = "https://pelisplushd.net/";
+        final String baseURL = "https://pelisplus.so/estrenos";
 
         try {
-            final Document document = Jsoup.connect(url).get();
-            for (Element row : document.select(".Posters a")) {
-                System.out.println(row.attr("href"));
-                /*if (row.select("a:nth-of-type(1)").hasAttr("href")) {
-                    continue;
-                }
-                else {
-                    final String ticker =
-                            row.select("td:nth-of-type(1)").text();
-                    final String name =
-                            row.select("td:nth-of-type(2)").text();
-                    final String tempPrice =
-                            row.select("td.right:nth-of-type(3)").text();
-                    final String tempPrice1 =
-                            tempPrice.replace(",", "");
-//                    final double price = Double.parseDouble(tempPrice1);
+            final Document document = Jsoup.connect(baseURL).get();
 
-                    System.out.println(ticker + " " + name + " " + tempPrice1);
-                }*/
+            for (Element row : document.select(".items-peliculas .item-pelicula a")) {
+                //System.out.println(row.attr("href"));
+                final String urlPelicula = row.attr("href");
+
+                try {
+                    final Document movie = Jsoup.connect("https://pelisplus.so" + urlPelicula).get();
+
+                    String nombre = movie.select(".info-content h1").text();
+                    String genero = movie.select(".info-content p:nth-of-type(4) span:nth-of-type(2)").text();
+                    String sinopsis = movie.select(".sinopsis").text();
+                    String fecha = movie.select(".info-content p:nth-of-type(2) span:nth-of-type(2)").text();
+                    String link = movie.select(".player.player-normal ul:nth-of-type(2)  li:nth-of-type(1)").attr("data-video");
+                    System.out.println(fecha);
+
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
         }
         catch (Exception ex) {
