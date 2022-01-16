@@ -26,7 +26,7 @@ public class Catalogo extends AggregateRoot {
         subscribe(new CatalogoEventChange(this));
     }
 
-    public void asignarPelicula(String id, String url, String nombre, String genero, String sinopsis, String fecha){
+    public void asignarPelicula(String url, String nombre, String genero, String sinopsis, String fecha){
         appendChange(new PeliculaAsignada(url,nombre, genero, sinopsis, fecha)).apply();
     }
 
