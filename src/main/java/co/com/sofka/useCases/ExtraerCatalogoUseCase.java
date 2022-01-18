@@ -30,6 +30,7 @@ public class ExtraerCatalogoUseCase implements Function<AsignarPeliculaCommand, 
         var document = urlBase();
         for (Element row : document.select(".items-peliculas .item-pelicula a")) {
             final String urlPelicula = row.attr("href");
+            
             try {
                 final Document movie = Jsoup.connect("https://pelisplus.so" + urlPelicula).get();
 

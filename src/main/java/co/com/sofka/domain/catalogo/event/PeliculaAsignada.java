@@ -3,6 +3,7 @@ package co.com.sofka.domain.catalogo.event;
 import co.com.sofka.domain.generic.DomainEvent;
 
 public class PeliculaAsignada extends DomainEvent {
+
     private final String url;
     private final String nombre;
     private final String genero;

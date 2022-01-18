@@ -3,8 +3,9 @@ package co.com.sofka.domain.catalogo.command;
 import co.com.sofka.domain.generic.Command;
 
 public class AsignarPeliculaCommand extends Command {
+
     private String catalogoId;
-    private String id;
+    private String peliculaId;
     private String url;
     private String nombre;
     private String genero;
@@ -22,12 +23,12 @@ public class AsignarPeliculaCommand extends Command {
         this.catalogoId = catalogoId;
     }
 
-    public String getId() {
-        return id;
+    public String getPeliculaId() {
+        return peliculaId;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setPeliculaId(String peliculaId) {
+        this.peliculaId = peliculaId;
     }
 
     public String getUrl() {
