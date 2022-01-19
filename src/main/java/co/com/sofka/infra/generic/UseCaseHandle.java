@@ -17,13 +17,13 @@ public abstract class UseCaseHandle {
     private EventStoreRepository repository;
 
     @Inject
-    private BusService busService;
+    private BusService busService;;
 
-    public void saveProgram(String programId, List<DomainEvent> events) {
+    public void saveCatalogo(String catalogoId, List<DomainEvent> events) {
         events.stream().map(event -> {
             String eventBody = EventSerializer.instance().serialize(event);
             return new StoredEvent(event.getClass().getTypeName(), new Date(), eventBody);
-        }).forEach(storedEvent -> repository.saveEvent("catalogo", programId, storedEvent));
+        }).forEach(storedEvent -> repository.saveEvent("catalogo", catalogoId, storedEvent));
 
         events.forEach(busService::send);
     }
