@@ -8,10 +8,12 @@ import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 
+import javax.enterprise.context.Dependent;
 import java.io.IOException;
 import java.util.List;
 import java.util.function.Function;
 
+@Dependent
 public class ExtraerCatalogoUseCase implements Function<AsignarPeliculaCommand, List<DomainEvent>> {
 
     private final EventStoreRepository repository;
