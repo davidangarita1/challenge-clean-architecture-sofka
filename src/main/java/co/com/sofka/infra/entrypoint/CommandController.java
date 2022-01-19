@@ -34,6 +34,4 @@ public class CommandController {
         bus.publish(command.getType(), command);
         return Response.ok().build();
     }
-
-
 }

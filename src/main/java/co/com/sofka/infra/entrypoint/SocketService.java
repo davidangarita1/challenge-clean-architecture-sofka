@@ -2,18 +2,18 @@ package co.com.sofka.infra.entrypoint;
 
 import co.com.sofka.domain.generic.DomainEvent;
 import co.com.sofka.domain.generic.EventSerializer;
+import org.jboss.logging.Logger;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.websocket.OnClose;
 import javax.websocket.OnError;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
+import javax.websocket.server.PathParam;
 import javax.websocket.server.ServerEndpoint;
-import javax.ws.rs.PathParam;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.logging.Logger;
 
 @ServerEndpoint("/retrieve/{correlationId}")
 @ApplicationScoped

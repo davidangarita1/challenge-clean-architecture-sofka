@@ -1,6 +1,8 @@
 package co.com.sofka.domain.catalogo.command;
 
-public class CrearCatalogoCommand {
+import co.com.sofka.domain.generic.Command;
+
+public class CrearCatalogoCommand extends Command {
 
     private String catalogoId;
     private String nombre;
