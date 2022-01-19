@@ -19,7 +19,7 @@ public class ExtraerCatalogoUseCase implements Function<AsignarPeliculaCommand, 
     private final EventStoreRepository repository;
     final String baseURL = "https://pelisplus.so/estrenos";
 
-    public ExtraerCatalogoUseCase(EventStoreRepository repository){
+    public ExtraerCatalogoUseCase(EventStoreRepository repository) {
         this.repository = repository;
     }
 
@@ -30,9 +30,9 @@ public class ExtraerCatalogoUseCase implements Function<AsignarPeliculaCommand, 
                 repository.getEventsBy("catalogo", asignarPeliculaCommand.getCatalogoId()));
 
         var document = urlBase();
+
         for (Element row : document.select(".items-peliculas .item-pelicula a")) {
             final String urlPelicula = row.attr("href");
-            
             try {
                 final Document movie = Jsoup.connect("https://pelisplus.so" + urlPelicula).get();
 
@@ -42,7 +42,7 @@ public class ExtraerCatalogoUseCase implements Function<AsignarPeliculaCommand, 
                 String fecha = movie.select(".info-content p:nth-of-type(2) span:nth-of-type(2)").text();
                 String url = movie.select(".player.player-normal ul:nth-of-type(2)  li:nth-of-type(1)").attr("data-video");
 
-                catalogo.asignarPelicula(url,nombre,genero,sinopsis,fecha);
+                catalogo.asignarPelicula(asignarPeliculaCommand.getPeliculaId(), url,nombre,genero,sinopsis,fecha);
 
             } catch (Exception ex) {
                 throw new ExtractCatalogoException();
@@ -58,4 +58,5 @@ public class ExtraerCatalogoUseCase implements Function<AsignarPeliculaCommand, 
             throw new ExtractCatalogoException();
         }
     }
+
 }

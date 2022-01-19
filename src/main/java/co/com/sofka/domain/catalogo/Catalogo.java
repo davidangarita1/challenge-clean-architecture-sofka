@@ -26,15 +26,14 @@ public class Catalogo extends AggregateRoot {
         subscribe(new CatalogoEventChange(this));
     }
 
-    public void asignarPelicula(String url, String nombre, String genero, String sinopsis, String fecha){
-        appendChange(new PeliculaAsignada(url,nombre, genero, sinopsis, fecha)).apply();
-    }
-
-
     public static Catalogo from(String id, List<DomainEvent> events){
         var catalogo = new Catalogo(id);
         events.forEach(catalogo::applyEvent);
         return catalogo;
+    }
+
+    public void asignarPelicula(String peliculaId, String url, String nombre, String genero, String sinopsis, String fecha){
+        appendChange(new PeliculaAsignada(peliculaId, url, nombre, genero, sinopsis, fecha)).apply();
     }
 
     public Map<String, Pelicula> peliculas() {
