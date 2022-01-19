@@ -19,7 +19,7 @@ public class CatalogoHandle {
     public CatalogoHandle(MongoClient mongoClient) {
         this.mongoClient = mongoClient;
     }
-    
+
     @ConsumeEvent(value = "sofka.catalogocreado", blocking = true)
     void consumeCatalogoCreado(CatalogoCreado event) {
         Map<String, Object> document = new HashMap<>();
