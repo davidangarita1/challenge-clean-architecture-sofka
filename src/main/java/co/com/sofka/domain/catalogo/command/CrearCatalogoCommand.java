@@ -1,7 +1,7 @@
 package co.com.sofka.domain.catalogo.command;
 
 public class CrearCatalogoCommand {
-    
+
     private String catalogoId;
     private String nombre;
 
